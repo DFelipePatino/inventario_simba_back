@@ -12,14 +12,12 @@ class Producto(models.Model):
     imagen = models.ImageField(upload_to='productos/', blank=True, null=True)
 
     def delete_product(self):
-        # Delete related Inventario record
+   
         if hasattr(self, 'inventario'):
             self.inventario.delete()
         
-        # Delete related Venta records
         self.venta_set.all().delete()
         
-        # Delete the product itself
         self.delete()
 
     def __str__(self):
@@ -55,8 +53,6 @@ class Venta(models.Model):
         return self.producto.nombre
 
     def __str__(self):
-        # Convert the fecha to the 'America/Bogota' timezone
         fecha_bogota = localtime(self.fecha, pytz.timezone('America/Bogota'))
-        # Format the date and time as specified
         formatted_date = fecha_bogota.strftime('%d/%m/%y %H:%M:%S')
         return f"{self.producto.nombre} - {self.cantidad} - {formatted_date}"
