@@ -15,6 +15,7 @@ class InventarioSerializer(serializers.ModelSerializer):
 
 class VentaSerializer(serializers.ModelSerializer):
     productoNombre = serializers.ReadOnlyField(source='producto.nombre')
+    productoPrecio = serializers.ReadOnlyField(source='producto.precio')
 
     class Meta:
         model = Venta
