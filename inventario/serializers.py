@@ -3,6 +3,8 @@ from .models import Producto, Inventario, Venta
 import pytz
 from django.utils.timezone import localtime
 
+# defino los serializers de mi app inventario, estos serializers son ProductoSerializer, InventarioSerializer y VentaSerializer.
+
 class ProductoSerializer(serializers.ModelSerializer):
     class Meta:
         model = Producto
@@ -21,10 +23,10 @@ class VentaSerializer(serializers.ModelSerializer):
         model = Venta
         fields = '__all__'
 
+        # defino una funcion para dar formato a la fecha de la venta que me permita visualizarla en el formato 'dd/mm/yy HH:MM:SS'.
+
     def to_representation(self, instance):
         representation = super().to_representation(instance)
-        # Convert the fecha to the 'America/Bogota' timezone
         fecha_bogota = localtime(instance.fecha, pytz.timezone('America/Bogota'))
-        # Format the date and time as specified
         representation['fecha'] = fecha_bogota.strftime('%d/%m/%y %H:%M:%S')
         return representation

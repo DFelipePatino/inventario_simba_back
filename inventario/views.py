@@ -4,6 +4,7 @@ from django.http import JsonResponse
 from .models import Producto, Inventario, Venta
 from .serializers import ProductoSerializer, InventarioSerializer, VentaSerializer
 
+# genero las vistas de mi app inventario utilizando el framework Django Rest Framework.
 class ProductoViewSet(viewsets.ModelViewSet):
     queryset = Producto.objects.all()
     serializer_class = ProductoSerializer
@@ -16,7 +17,4 @@ class VentaViewSet(viewsets.ModelViewSet):
     queryset = Venta.objects.all()
     serializer_class = VentaSerializer
 
-def delete_product_view(request, product_id):
-    product = get_object_or_404(Producto, id=product_id)
-    product.delete_product()
-    return JsonResponse({'message': 'Product and related records deleted successfully'})
+
