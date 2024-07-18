@@ -4,6 +4,7 @@ from django.db import models
 from django.utils.timezone import localtime
 import pytz
 
+# defino los modelos que seran sincornizados con la base de datos de mi proyecto inventario_simba, estos modelos son Producto, Inventario y Venta.
 class Producto(models.Model):
     nombre = models.CharField(max_length=100)
     descripcion = models.TextField(default='Descripción por defecto')
@@ -51,6 +52,8 @@ class Venta(models.Model):
     @property
     def productoNombre(self):
         return self.producto.nombre
+    
+    # defino funcion para dar formto a la fecha de la venta.
 
     def __str__(self):
         fecha_bogota = localtime(self.fecha, pytz.timezone('America/Bogota'))
