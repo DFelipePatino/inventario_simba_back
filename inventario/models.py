@@ -1,6 +1,8 @@
 import uuid
 from django.core.exceptions import ValidationError
 from django.db import models
+from django.utils.timezone import localtime
+import pytz
 
 class Producto(models.Model):
     nombre = models.CharField(max_length=100)
@@ -53,4 +55,8 @@ class Venta(models.Model):
         return self.producto.nombre
 
     def __str__(self):
-        return f"{self.producto.nombre} - {self.cantidad} - {self.fecha}"
+        # Convert the fecha to the 'America/Bogota' timezone
+        fecha_bogota = localtime(self.fecha, pytz.timezone('America/Bogota'))
+        # Format the date and time as specified
+        formatted_date = fecha_bogota.strftime('%d/%m/%y %H:%M:%S')
+        return f"{self.producto.nombre} - {self.cantidad} - {formatted_date}"

@@ -1,6 +1,6 @@
 from rest_framework import viewsets
 from django.shortcuts import get_object_or_404
-from django.http import HttpResponse
+from django.http import JsonResponse
 from .models import Producto, Inventario, Venta
 from .serializers import ProductoSerializer, InventarioSerializer, VentaSerializer
 
@@ -19,4 +19,4 @@ class VentaViewSet(viewsets.ModelViewSet):
 def delete_product_view(request, product_id):
     product = get_object_or_404(Producto, id=product_id)
     product.delete_product()
-    return HttpResponse("Product deleted successfully.")
+    return JsonResponse({'message': 'Product and related records deleted successfully'})
