@@ -11,27 +11,26 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 """
 
 from pathlib import Path
+import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
-
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-4xo=v66hhzbvln!ux1tm7vh5zgfz56l77^(e^3600$t)18a9xb'
+SECRET_KEY = os.getenv('DJANGO_SECRET_KEY', 'your-default-secret-key')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = os.getenv('DJANGO_DEBUG', 'False') == 'True'
 
+# Allowed hosts configuration
 ALLOWED_HOSTS = [
     'inventario-simba-back.onrender.com',
     'localhost',
     '127.0.0.1',
 ]
-
-
 
 # Application definition
 
@@ -56,7 +55,6 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'corsheaders.middleware.CorsMiddleware',
-    # 'inventario.middleware.SuperUserRequiredMiddleware',
 ]
 
 CORS_ALLOWED_ORIGINS = [
@@ -83,22 +81,17 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'inventario_simba.wsgi.application'
 
-
-# Database
-# https://docs.djangoproject.com/en/5.0/ref/settings/#databases
-
+# Database configuration
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'inventario_3nd1',
-        'USER': 'inventario_user',
-        'PASSWORD': 'tY68jkXoF4eEzqNhR0PwTkUo4JePMD5Z',
-        'HOST': 'dpg-cqgjjc2j1k6c73df1ceg-a',
-        'PORT': '5432',
+        'NAME': os.getenv('DB_NAME', 'inventario_3nd1'),
+        'USER': os.getenv('DB_USER', 'inventario_user'),
+        'PASSWORD': os.getenv('DB_PASSWORD', 'tY68jkXoF4eEzqNhR0PwTkUo4JePMD5Z'),
+        'HOST': os.getenv('DB_HOST', 'dpg-cqgjjc2j1k6c73df1ceg-a'),
+        'PORT': os.getenv('DB_PORT', '5432'),
     }
 }
-
-
 
 # Password validation
 # https://docs.djangoproject.com/en/5.0/ref/settings/#auth-password-validators
@@ -118,7 +111,6 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
 # Internationalization
 # https://docs.djangoproject.com/en/5.0/topics/i18n/
 
@@ -129,7 +121,6 @@ TIME_ZONE = 'UTC'
 USE_I18N = True
 
 USE_TZ = True
-
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.0/howto/static-files/
