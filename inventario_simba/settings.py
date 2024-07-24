@@ -85,10 +85,10 @@ WSGI_APPLICATION = 'inventario_simba.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'inventario',
+        'NAME': 'inventario_3nd1',
         'USER': 'inventario_user',
-        'PASSWORD': '1234',
-        'HOST': 'localhost',
+        'PASSWORD': 'tY68jkXoF4eEzqNhR0PwTkUo4JePMD5Z',
+        'HOST': 'dpg-cqgjjc2j1k6c73df1ceg-a',
         'PORT': '5432',
     }
 }
