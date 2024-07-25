@@ -27,7 +27,10 @@ SECRET_KEY = 'django-insecure-4xo=v66hhzbvln!ux1tm7vh5zgfz56l77^(e^3600$t)18a9xb
 DEBUG = True
 
 ALLOWED_HOSTS = [
-      "https://inventario-simba-back.onrender.com",
+    "https://inventario-simba-back.onrender.com",
+    'localhost',
+    '127.0.0.1',
+    'inventario-simba-back.onrender.com',
 ]
 
 
