@@ -112,10 +112,10 @@ DATABASES = {
     }
 }
 
-if os.getenv('SKIP_DB_CHECK', 'False').lower() in ('true', '1', 't'):
-    DATABASES['default'] = {
-        'ENGINE': 'django.db.backends.dummy',
-    }
+# if os.getenv('SKIP_DB_CHECK', 'False').lower() in ('true', '1', 't'):
+#     DATABASES['default'] = {
+#         'ENGINE': 'django.db.backends.dummy',
+#     }
 
 
 # Password validation
