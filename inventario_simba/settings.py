@@ -58,7 +58,7 @@ MIDDLEWARE = [
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:5173",
     "https://inventario-simba-front.onrender.com",
-    'inventario-simba-back.onrender.com',
+    "https://inventario-simba-back.onrender.com",
 ]
 
 ROOT_URLCONF = 'inventario_simba.urls'
