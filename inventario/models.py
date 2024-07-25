@@ -10,6 +10,7 @@ class Producto(models.Model):
     precio = models.DecimalField(max_digits=10, decimal_places=2)
     stock = models.PositiveIntegerField()
     imagen = models.ImageField(upload_to='productos/', blank=True, null=True)
+    link = models.URLField(blank=True, null=True) 
 
     def delete_product(self):
    
