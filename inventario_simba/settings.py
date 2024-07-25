@@ -58,12 +58,13 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'corsheaders.middleware.CorsMiddleware',
     # 'inventario.middleware.SuperUserRequiredMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
 ]
 
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:5173",
     "https://inventario-simba-front.onrender.com",
-  ]
+]
 
 ROOT_URLCONF = 'inventario_simba.urls'
 
@@ -111,6 +112,10 @@ DATABASES = {
     }
 }
 
+if os.getenv('SKIP_DB_CHECK', 'False').lower() in ('true', '1', 't'):
+    DATABASES['default'] = {
+        'ENGINE': 'django.db.backends.dummy',
+    }
 
 
 # Password validation
@@ -147,13 +152,20 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.0/howto/static-files/
 
-STATIC_URL = 'static/'
+STATIC_URL = '/static/'
+
+# Directory where collectstatic will collect static files for deployment
+STATIC_ROOT = BASE_DIR / 'staticfiles'
+
+# Media files configuration
+MEDIA_URL = '/media/'
+MEDIA_ROOT = BASE_DIR / 'media'
+
+# If not in DEBUG mode, use WhiteNoise to serve static files and configure storage
+if not DEBUG:
+    STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-
-# Media files configuration
-MEDIA_URL = '/media/'
-MEDIA_ROOT = BASE_DIR / 'media'
