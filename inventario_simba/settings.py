@@ -26,7 +26,9 @@ SECRET_KEY = 'django-insecure-4xo=v66hhzbvln!ux1tm7vh5zgfz56l77^(e^3600$t)18a9xb
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+      "https://inventario-simba-back.onrender.com",
+]
 
 
 # Application definition
@@ -58,8 +60,7 @@ MIDDLEWARE = [
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:5173",
     "https://inventario-simba-front.onrender.com",
-    "https://inventario-simba-back.onrender.com",
-]
+  ]
 
 ROOT_URLCONF = 'inventario_simba.urls'
 
