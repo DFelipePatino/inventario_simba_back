@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 """
 
 from pathlib import Path
+import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -56,6 +57,7 @@ MIDDLEWARE = [
 
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:5173",
+    "https://inventario-simba-front.onrender.com",
 ]
 
 ROOT_URLCONF = 'inventario_simba.urls'
@@ -82,14 +84,25 @@ WSGI_APPLICATION = 'inventario_simba.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql',
+#         'NAME': 'inventario',
+#         'USER': 'inventario_user',
+#         'PASSWORD': '1234',
+#         'HOST': 'localhost',
+#         'PORT': '5432',
+#     }
+# }
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'inventario',
-        'USER': 'inventario_user',
-        'PASSWORD': '1234',
-        'HOST': 'localhost',
-        'PORT': '5432',
+        'NAME': os.getenv('DB_NAME', 'inventario_3nd1'),
+        'USER': os.getenv('DB_USER', 'inventario_user'),
+        'PASSWORD': os.getenv('DB_PASSWORD', 'tY68jkXoF4eEzqNhR0PwTkUo4JePMD5Z'),
+        'HOST': os.getenv('DB_HOST', 'dpg-cqgjjc2j1k6c73df1ceg-a'),
+        'PORT': os.getenv('DB_PORT', '5432'),
     }
 }
 
