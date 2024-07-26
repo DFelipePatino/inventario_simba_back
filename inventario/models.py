@@ -1,8 +1,11 @@
 import uuid
+import logging
 from django.core.exceptions import ValidationError
 from django.db import models
 from django.utils.timezone import localtime
 import pytz
+
+logger = logging.getLogger(__name__)
 
 class Producto(models.Model):
     nombre = models.CharField(max_length=100)
@@ -11,17 +14,19 @@ class Producto(models.Model):
     stock = models.PositiveIntegerField()
     imagen = models.ImageField(upload_to='productos/', blank=False, null=False, default='path/to/default/image.jpg')
     imagen_data = models.BinaryField(blank=True, null=True)
-    link = models.URLField(blank=True, null=True) 
+    link = models.URLField(blank=True, null=True)
 
     def save(self, *args, **kwargs):
-        # Save the image data to the BinaryField
-        if self.imagen:
-            with self.imagen.open('rb') as image_file:
-                self.imagen_data = image_file.read()
+        try:
+            if self.imagen and not self.imagen.closed:
+                with self.imagen.open('rb') as image_file:
+                    self.imagen_data = image_file.read()
+        except Exception as e:
+            logger.error(f"Error saving image data: {e}")
+            raise
         super().save(*args, **kwargs)
 
     def delete_product(self):
-   
         if hasattr(self, 'inventario'):
             self.inventario.delete()
         
@@ -31,6 +36,7 @@ class Producto(models.Model):
 
     def __str__(self):
         return self.nombre
+
 
 class Inventario(models.Model):
     producto = models.OneToOneField(Producto, on_delete=models.CASCADE)

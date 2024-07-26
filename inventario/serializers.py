@@ -1,7 +1,7 @@
 from rest_framework import serializers
 from .models import Producto, Inventario, Venta
-import pytz
 from django.utils.timezone import localtime
+import pytz
 
 class ProductoSerializer(serializers.ModelSerializer):
     class Meta:
@@ -23,8 +23,6 @@ class VentaSerializer(serializers.ModelSerializer):
 
     def to_representation(self, instance):
         representation = super().to_representation(instance)
-        # Convert the fecha to the 'America/Bogota' timezone
         fecha_bogota = localtime(instance.fecha, pytz.timezone('America/Bogota'))
-        # Format the date and time as specified
         representation['fecha'] = fecha_bogota.strftime('%d/%m/%y %H:%M:%S')
         return representation
