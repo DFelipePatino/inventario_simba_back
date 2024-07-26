@@ -15,11 +15,6 @@ class Migration(migrations.Migration):
             name='imagen_data',
             field=models.BinaryField(blank=True, null=True),
         ),
-        migrations.AddField(
-            model_name='producto',
-            name='link',
-            field=models.URLField(blank=True, null=True),
-        ),
         migrations.AlterField(
             model_name='producto',
             name='imagen',
