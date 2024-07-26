@@ -9,8 +9,8 @@ class Producto(models.Model):
     descripcion = models.TextField(default='Descripción por defecto')
     precio = models.DecimalField(max_digits=10, decimal_places=2)
     stock = models.PositiveIntegerField()
-    imagen = models.ImageField(upload_to='productos/', blank=False, null=False)
-    imagen_data = models.BinaryField(blank=True, null=True) 
+    imagen = models.ImageField(upload_to='productos/', blank=False, null=False, default='path/to/default/image.jpg')
+    imagen_data = models.BinaryField(blank=True, null=True)
     link = models.URLField(blank=True, null=True) 
 
     def save(self, *args, **kwargs):
