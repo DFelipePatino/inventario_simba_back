@@ -1,3 +1,50 @@
+Live Demo Front: https://inventario-simba-front.onrender.com/
+
+Live Demo Back: https://inventario-simba-back.onrender.com/inventario/productos/
+
+BackEnd: https://github.com/DFelipePatino/inventario_simba_back.git
+
+
+Prerequisites
+
+Python: Make sure Python is installed on the system.
+pip: Python package manager.
+Django: Web development framework for Python.
+PostgreSQL: Database.
+
+Clone the repository:
+
+git clone https://github.com/DFelipePatino/inventario_simba_back.git
+
+Starting the project
+
+Create a virtual environment:
+
+python -m venv venv
+
+Activate the virtual environment:
+
+.\venv\Scripts\activate
+
+Install dependencies:
+
+pip install -r requirements.txt
+
+Set up environment variables:
+Create a .env file in the root of the project and add the necessary variables
+
+Run migrations and create the superuser:
+
+python manage.py makemigrations
+python manage.py migrate
+python manage.py createsuperuser
+
+Run the development server:
+
+python manage.py runserver
+
+
+
 Requisitos Previos
 
 Python: Asegurarse de tener Python instalado en el sistema.
@@ -21,12 +68,10 @@ Instala las dependencias:
 pip install -r requirements.txt
 
 Configura las variables de entorno:
-Crea un archivo .env en la raíz del proyecto y agrega las variables necesarias (ejemplo para base de datos PostgreSQL):SECRET_KEY=tu_secreto
-SECRET_KEY=tu_secreto
-DEBUG=True
-DATABASE_URL=postgres://usuario:contraseña@localhost:5432/nombre_de_la_base_de_datos
+Crea un archivo .env en la raíz del proyecto y agrega las variables necesarias 
 
 Realiza las migraciones y crea el superusuario:
+
 python manage.py makemigrations
 python manage.py migrate
 python manage.py createsuperuser
