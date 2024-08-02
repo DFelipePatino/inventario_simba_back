@@ -4,7 +4,7 @@ from django.db import models
 from django.utils.timezone import localtime
 import pytz
 
-# defino los modelos que seran sincornizados con la base de datos de mi proyecto inventario_simba, estos modelos son Producto, Inventario y Venta.
+# Define the models that will be synchronized with the database for the inventario_simba project. These models are Producto, Inventario, and Venta.
 class Producto(models.Model):
     nombre = models.CharField(max_length=100)
     descripcion = models.TextField(default='Descripción por defecto')
@@ -13,12 +13,9 @@ class Producto(models.Model):
     imagen = models.ImageField(upload_to='productos/', blank=True, null=True)
 
     def delete_product(self):
-   
         if hasattr(self, 'inventario'):
             self.inventario.delete()
-        
         self.venta_set.all().delete()
-        
         self.delete()
 
     def __str__(self):
@@ -53,8 +50,7 @@ class Venta(models.Model):
     def productoNombre(self):
         return self.producto.nombre
     
-    # defino funcion para dar formto a la fecha de la venta.
-
+    # Define a function to format the sale date.
     def __str__(self):
         fecha_bogota = localtime(self.fecha, pytz.timezone('America/Bogota'))
         formatted_date = fecha_bogota.strftime('%d/%m/%y %H:%M:%S')
