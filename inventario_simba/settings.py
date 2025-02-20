@@ -112,10 +112,10 @@ WSGI_APPLICATION = 'inventario_simba.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': os.getenv('DB_NAME', 'inventariodb'),
-        'USER': os.getenv('DB_USER', 'InventarioDB'),
-        'PASSWORD': os.getenv('DB_PASSWORD', 'wdfhyjnb752pok'),
-        'HOST': os.getenv('DB_HOST', 'inventariodb.c34ow4agczva.us-east-2.rds.amazonaws.com'),
+        'NAME': os.getenv('DB_NAME', 'database-1'),
+        'USER': os.getenv('DB_USER', 'User1'),
+        'PASSWORD': os.getenv('DB_PASSWORD', 'bfgnfd54b51bn48b3g'),
+        'HOST': os.getenv('DB_HOST', 'database-1.c34ow4agczva.us-east-2.rds.amazonaws.com'),
         'PORT': os.getenv('DB_PORT', '5432'),
     }
 }
