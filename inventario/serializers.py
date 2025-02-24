@@ -7,12 +7,7 @@ from django.utils.timezone import localtime
 class ProductoSerializer(serializers.ModelSerializer):
     class Meta:
         model = Producto
-        fields = ['id', 'nombre', 'descripcion', 'precio', 'stock', 'imagen', 'specifications']
-
-    def create(self, validated_data):
-        if 'specifications' not in validated_data:
-            validated_data['specifications'] = {}
-        return super().create(validated_data)
+        fields = ['id', 'nombre', 'descripcion', 'precio', 'stock', 'imagen']
 
     def validate_precio(self, value):
         if value <= 0:

@@ -11,7 +11,6 @@ class Producto(models.Model):
     precio = models.DecimalField(max_digits=10, decimal_places=2)
     stock = models.PositiveIntegerField()
     imagen = models.ImageField(upload_to='productos/', blank=True, null=True)
-    specifications = models.JSONField(default=dict, blank=True)  # Keep this as is since the column exists
 
     def delete_product(self):
         if hasattr(self, 'inventario'):
