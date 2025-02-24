@@ -7,7 +7,17 @@ from django.utils.timezone import localtime
 class ProductoSerializer(serializers.ModelSerializer):
     class Meta:
         model = Producto
-        fields = '__all__'
+        fields = ['id', 'nombre', 'descripcion', 'precio', 'stock', 'imagen']
+
+    def validate_precio(self, value):
+        if value <= 0:
+            raise serializers.ValidationError("El precio debe ser mayor que 0")
+        return value
+
+    def validate_stock(self, value):
+        if value < 0:
+            raise serializers.ValidationError("El stock no puede ser negativo")
+        return value
 
 class InventarioSerializer(serializers.ModelSerializer):
     class Meta:
